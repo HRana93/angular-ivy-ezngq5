@@ -1,4 +1,43 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<!-- app.component.html -->
+
+<div class="container">
+  <h5>
+    Candidates
+  </h5>
+  <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+          <label>Male</label><input class="form-control" formControlName="Male" type="checkbox">
+          <label>Female:</label>
+          <input class="form-control" formControlName="Female" type="checkbox">
+          <label>Search</label>
+          <input class="form-control" formControlName="search" type="text">
+        </div>
+        <h5>
+          Add New Candidates
+        </h5>
+         <div class="form-group">
+            <label>FirstName:</label>
+            <input class="form-control" formControlName="firstName" type="text">
+            <label>LastName:</label>
+            <input class="form-control" formControlName="lastName" type="text">
+            <label>Email:</label>
+            <input class="form-control" formControlName="address" type="text">
+            <label>Male:</label>
+            <input class="form-control" formControlName="male" type="radio">
+            <label>Female:</label>
+            <input class="form-control" formControlName="female" type="radio">
+
+        </div>
+        <div *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['email'].errors.required">
+              email is required.
+            </div>
+        </div>
+        <button type="submit"
+            [disabled]="angForm.pristine || angForm.invalid" class="btn btn-success">
+            Save
+        </button>
+  </form>
+  <br />
+  <p>Form value: {{ angForm.value | json }}</p>
+</div>
